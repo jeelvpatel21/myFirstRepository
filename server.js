@@ -16,7 +16,7 @@ app.get('/api/getName', (req, res) => {
 
 app.get('/', (req, res) => {
     res.send(`
-        <h1>Jeel's Website</h1>
+        <h1>Jeell's Website</h1>
         <p>my first website </p>
     `);
 });
