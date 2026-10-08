@@ -1,3 +1,38 @@
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get('/api/getImage', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.sendFile(path.join(__dirname, 'public', 'background.jpg'));
+});
+
+app.get('/api/getName', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.json({ name: "Jeel's Website" });
+});
+
+// Your original response for other requests.
+app.use((req, res) => {
+    let method = req.method + " ";
+    let url = req.url + "\n\n";
+    let headers = JSON.stringify(req.headers, null, 4);
+
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.write(method);
+    res.write(url);
+    res.write(headers);
+    res.end();
+});
+
+app.listen(port, "0.0.0.0", () => {
+    console.log(`Server started on port ${port}`);
+});
+
+/*
+
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
