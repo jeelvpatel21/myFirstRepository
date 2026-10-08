@@ -14,18 +14,25 @@ app.get('/api/getName', (req, res) => {
     res.json({ name: "Jeel's Website" });
 });
 
-// Your original response for other requests.
-app.use((req, res) => {
-    let method = req.method + " ";
-    let url = req.url + "\n\n";
-    let headers = JSON.stringify(req.headers, null, 4);
-
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.write(method);
-    res.write(url);
-    res.write(headers);
-    res.end();
+app.get('/', (req, res) => {
+    res.send(`
+        <h1>Jeel's Website</h1>
+        <p>my first website </p>
+    `);
 });
+
+// Your original response for other requests.
+// app.use((req, res) => {
+//     let method = req.method + " ";
+//     let url = req.url + "\n\n";
+//     let headers = JSON.stringify(req.headers, null, 4);
+
+//     res.writeHead(200, { 'Content-Type': 'text/plain' });
+//     res.write(method);
+//     res.write(url);
+//     res.write(headers);
+//     res.end();
+// });
 
 app.listen(port, "0.0.0.0", () => {
     console.log(`Server started on port ${port}`);
